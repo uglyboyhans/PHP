@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     
     <body>
-        
+        <div align="center">
         <?php
         $con = mysql_connect("localhost","root","aishangni520");
         if (!$con){
@@ -33,6 +33,7 @@ and open the template in the editor.
             }
             mysql_close($con);
         ?>
+        </div>
         <script src="js/toManage.js"></script>
         <script src="js/toSend.js"></script>
     </body>

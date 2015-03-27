@@ -4,5 +4,5 @@
  * and open the template in the editor.
  */
 (document).getElementById("manage").onclick=function(){
-    location.href="manage.php";
+    location.href="login.php";
 };
