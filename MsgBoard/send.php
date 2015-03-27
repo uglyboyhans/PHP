@@ -10,13 +10,11 @@ and open the template in the editor.
         <title>HH's Message Board - send</title>
     </head>
     <body>
-        <div align="center">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <label>name:  <input type="text" name="name" placeholder="your name.." /></label>
-            <br />message:<br /><textarea cols="11" rows="11" name="content"></textarea>
+            <label>name:  <input type="text" name="name" /></label>
+            <br />message:<br /><textarea cols="31" rows="31" name="content"></textarea>
             <input type="submit" value="submit" />
         </form>
-        
         <?php
         //init:
         $name="";
@@ -45,6 +43,5 @@ and open the template in the editor.
             }      
         ?>
         <a href="index.php">Back to Index</a>
-        </div>
     </body>
 </html>

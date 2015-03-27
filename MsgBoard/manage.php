@@ -10,7 +10,6 @@ and open the template in the editor.
         <title>HH's Message Board - manage</title>
     </head>
     <body>
-        <div align="center">
         <?php
         function delete($del_id) {
             $con = mysql_connect("localhost","root","aishangni520");
@@ -40,6 +39,6 @@ and open the template in the editor.
         ?>
         <a href="index.php">Back to Index</a>
         <script src="js/Manage.js"></script>
-        </div>
+        
     </body>
 </html>
