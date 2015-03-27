@@ -10,7 +10,7 @@ and open the template in the editor.
         <title>HH's Message Board - reply</title>
     </head>
     <body>
-        
+        <div align="center">
         <?php
         $q = $_GET["q"];
         $reply = "";
@@ -43,8 +43,10 @@ and open the template in the editor.
         //echo "<script>location.href='manage.php'</script>";
         ?>
         <form action="reply.php?q=<?php echo $q; ?>" method="post">
-            <input type="text" name="reply" />
-            <input type="submit" value="submit" />
+            <input type="text" name="reply" placeholder="input your reply" />
+            <input type="submit" value="reply" />
         </form>
+            <a href="manage.php">Back to Manage</a>
+        </div>
     </body>
 </html>
