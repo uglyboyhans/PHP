@@ -37,13 +37,15 @@ and open the template in the editor.
                         $username = $row['username'];
                         $userpass = $row['password'];
                     }
-                    
+
                     if ($input_name != $username) {
                         echo "<script>alert('username does not exist!');</script>";
                     } else {
                         if ($input_pass != $userpass) {
                             echo "<script>alert('Wrong password!');</script>";
                         } else {
+                            session_start();
+                            $_SESSION["login"] = "YES";
                             echo "<script>"
                             . "location.href='manage.php'"
                             . "</script>";

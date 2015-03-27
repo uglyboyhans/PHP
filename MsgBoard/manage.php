@@ -4,6 +4,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+session_start();
+if($_SESSION["login"]!="YES"){
+ echo "No login!";
+ exit;
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,7 +45,7 @@ and open the template in the editor.
             }
             mysql_close($con);
         ?>
-        <a href="index.php">Back to Index</a>
+        <a href="logout.php">Back to Index</a>
         <script src="js/Manage.js"></script>
         </div>
     </body>
