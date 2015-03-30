@@ -38,7 +38,7 @@ if ($_SESSION["login"] != "YES") {
             }
             mysql_close($con);
             ?>
-            <a href="logout.php">Log out</a>
+            <a href="logout.php">Logout</a>
             <script src="js/Manage.js"></script>
         </div>
     </body>
