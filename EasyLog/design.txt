@@ -56,7 +56,7 @@ edit.php{
 }
 
 
-mysql.table[]={article,comment,user};
-article[]={id,name,title,article};//name sets unique;id is primary key;
+mysql.table[]={blog,comment,user};
+blog[]={id,name,title,article};//name sets unique;id is primary key;
 comment[]={id,visitor_name,content,reply,time};
 user[]={username(unique),password};

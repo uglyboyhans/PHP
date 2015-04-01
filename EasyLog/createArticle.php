@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>HH's Easy Log</title>
+        <title>HH's Easy Log - create</title>
     </head>
     <body>
         <div style="margin-left:auto;
@@ -24,26 +24,21 @@ and open the template in the editor.
         </div>
 
         <?php
-        $folder_path = "e:/w3school/php/"; //the article will save at there;
-        $title = $article = ""; //init title;
+        $title = $article = ""; //init;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $title = $_POST["title"];
         }
         if ($title != "") {
-            $article = $_POST["article"]; //get article from post
-            //save article into a file:
-            $filepath = $folder_path . $title . ".txt";
-            $newfile = fopen($filepath, "w") or die("Could not open the file!");
-            fwrite($newfile, $article);
-            fclose($newfile);
-            //save the file path into mysql:
+            //get article from post:
+            $article = str_replace(array("\r\n", "\r", "\n"),  "<br />", $_POST["article"]); 
+            //save the blog into mysql:
             $con = mysql_connect("localhost", "root", "aishangni520");
             if (!$con) {
                 die("Failed to connect:" . mysql_error());
             } else {
                 mysql_select_db("easylog", $con);
-                $query = "insert into file_path (filename,file_link)"
-                        . " values ('$title','$filepath')";
+                $query = "insert into blog (title,article)"
+                        . " values ('$title','$article')";
                 mysql_query($query, $con);
                 mysql_close($con);
             }
