@@ -1,0 +1,60 @@
+index.php{
+	if admin{
+		func[]={showArticleList,readArticle,manageArticle,createArticle};
+	}
+	else {
+		func[]={showArticleList,readArticle};
+	}
+}
+
+createArticle.php{//actually done
+	save file to folder;
+	save filepath to mysql;
+}
+
+readArticle.php{
+	get path from mysql;
+	get file by path;
+	get comment from mysql;
+	if(admin){//can edit
+		if(edit){
+			edit.php;
+		}
+	}
+	if(visiter){// can comment
+		if(comment){
+			use like msg board;//seems difficult...~_~...
+		}		
+	}
+}
+regiest.php{
+    username unique;
+}
+login.php{
+	use session;
+}
+
+logout.php{
+	session;
+}
+
+edit.php{
+	if(edit){
+		title and article=now's;
+		only change file;//mysql don't change;
+	}
+	if(delete){
+		delete file from folder;
+		delete path from mysql;
+		delete comment from mysql;
+	}
+	if(reply){
+		use like msg board;
+	}
+}
+
+
+mysql.table[]={articlePath,comment,user};
+articlePath[]={id,name,title,path};//name sets unique;id is primary key;
+comment[]={id,username,content,reply,time};
+user[]={username(unique),password};
