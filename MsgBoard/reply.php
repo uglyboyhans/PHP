@@ -32,7 +32,6 @@ and open the template in the editor.
                     echo "<br /><br />";
                 }
             if ($reply != "") {
-                echo "q:".$q;
                 mysql_select_db("h_msg_board", $con); //use database
                 $query = "update message set reply ='$reply' where id=" . $q;
                 mysql_query($query, $con);

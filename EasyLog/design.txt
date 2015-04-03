@@ -1,20 +1,21 @@
 index.php{
 	if admin{
-		func[]={showArticleList,readArticle,manageArticle,createArticle};
+		func[]={showArticleList,readArticle,createArticle,//done
+                        manageArticle};
 	}
 	else {
 		func[]={showArticleList,readArticle};
 	}
 }
 
-createArticle.php{//actually done
+createArticle.php{//done
 	save to mysql directly;
 }
 
 readBlog.php{
-	get article from mysql;
-	get comment from mysql;
-        get reply from mysql;
+	get article from mysql;//done
+	get comment from mysql;//done
+        get reply from mysql;//done
 	if(admin){
 		if(manage){
                     edit or delete;//use option
@@ -23,9 +24,9 @@ readBlog.php{
                     reply;
                 }
 	}
-	if(visiter){// can comment
-		if(comment){
-			use like msg board;//seems difficult...~_~...
+	if(visiter){//to do
+		if(comment){//done
+			
 		}		
 	}
 }

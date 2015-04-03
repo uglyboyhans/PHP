@@ -11,22 +11,42 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        $q=$_GET["q"];
+        $q = $_GET["q"];
         $con = mysql_connect("localhost", "root", "aishangni520");
-            if (!$con) {
-                die("Failed to connect:" . mysql_error());
-            } else {
-                mysql_select_db("easylog", $con);
-                $query = "select title,article from blog where id=".$q;
-                $result=mysql_query($query, $con);
-                while($row=  mysql_fetch_array($result)){
-                    echo "<h2>".$row['title']."</h2>";
-                    //echo $row['author']."<br />";
-                    echo $row['article'];
-                }
-                mysql_close($con);
+        if (!$con) {
+            die("Failed to connect:" . mysql_error());
+        } else {
+            mysql_select_db("easylog", $con);
+            $query = "select title,article from blog where id=" . $q;
+            $result = mysql_query($query, $con);
+            while ($row = mysql_fetch_array($result)) {
+                echo "<h2>" . $row['title'] . "</h2>";
+                //echo $row['author']."<br />";
+                echo $row['article'];
             }
+            echo "<p>**********************************************************</p>";
+            echo "Comments:<br />-------------------------------------<br />";
+            $query = "select visitor_name,content,time from comment where blog_id=$q";
+            $result_comment = mysql_query($query, $con);
+            if (!empty($result_comment)) {
+                while ($row = mysql_fetch_array($result_comment)) {
+                    echo $row['visitor_name'] . " says:<br />";
+                    echo $row['content'] . "<br />";
+                    echo "at " . $row['time'] . "<br />";
+                    if (!empty($row['reply'])) {              //in case it's NULL
+                        echo "admin reply:" . $row['reply'] . "<br />";
+                    }
+                    echo "------------------------------<br />";
+                }
+            }
+            mysql_close($con);
+        }
         ?>
+        <p>----------------------------------------------------</p>
+        <form action="comment.php?q=<?php echo $q; ?>" id="form_comment" method="post">
+            <textarea cols="55" rows="11" name="content"></textarea>
+            <input type="submit" id="submit_comment" value="Comment" />
+        </form>
         <br /><a href="index.php">Index</a>
     </body>
 </html>
