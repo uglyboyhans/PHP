@@ -22,6 +22,8 @@ and open the template in the editor.
                 <input type="submit" value="publish" />
             </form>
         </div>
+        
+        <a href="index.php">Index</a>
 
         <?php
         $title = $article = ""; //init;

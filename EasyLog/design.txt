@@ -11,16 +11,16 @@ createArticle.php{//actually done
 	save to mysql directly;
 }
 
-readArticle.php{
+readBlog.php{
 	get article from mysql;
 	get comment from mysql;
         get reply from mysql;
-	if(admin){//can edit
-		if(edit){
-			edit.php;
-		}
+	if(admin){
+		if(manage){
+                    edit or delete;//use option
+                }
                 if(reply){
-                    edit.php;
+                    reply;
                 }
 	}
 	if(visiter){// can comment
@@ -41,7 +41,7 @@ logout.php{
 	session;
 }
 
-edit.php{
+manage.php{
 	if(edit){
 		title and article=now's;
 		update mysql;

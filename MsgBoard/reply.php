@@ -14,7 +14,7 @@ and open the template in the editor.
         <?php
         $q = $_GET["q"];
         $reply = "";
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {//post from input
             $reply = $_POST["reply"];
         }
         $con = mysql_connect("localhost", "root", "aishangni520");
