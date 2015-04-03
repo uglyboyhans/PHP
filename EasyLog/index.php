@@ -10,7 +10,7 @@ and open the template in the editor.
         <title id="index_title">HH's Easy Log - index</title>
     </head>
     <body>
-        <a href="login.php">login</a><br /><br />
+        <a href="login.php">login</a>&nbsp;&nbsp;<a href="register.php">register</a><br /><br />
         <?php
         $con=  mysql_connect("localhost", "root", "aishangni520");
         if(!$con){

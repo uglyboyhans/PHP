@@ -43,6 +43,9 @@ and open the template in the editor.
                         . " values ('$title','$article')";
                 mysql_query($query, $con);
                 mysql_close($con);
+                echo "<script>"
+                . "location.href='index.php';"
+                        . "</script>";
             }
         }
         ?>

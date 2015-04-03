@@ -1,7 +1,6 @@
 index.php{
 	if admin{
-		func[]={showArticleList,readArticle,createArticle,//done
-                        manageArticle};
+		func[]={showArticleList,readArticle,createArticle,manageArticle};
 	}
 	else {
 		func[]={showArticleList,readArticle};
