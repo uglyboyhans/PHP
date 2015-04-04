@@ -4,6 +4,18 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+session_start();
+$login_name = $_SESSION["login"];
+
+if ($login_name === "" || $login_name === NULL) {
+    echo "<script>"
+    . "location.href='login.php';"
+    . "</script>";
+} else {
+    echo "Welcome: " . $login_name . "! <a href='logout.php'>logout</a><br />";
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -22,7 +34,7 @@ and open the template in the editor.
                 <input type="submit" value="publish" />
             </form>
         </div>
-        
+
         <a href="index.php">Index</a>
 
         <?php
@@ -32,20 +44,25 @@ and open the template in the editor.
         }
         if ($title != "") {
             //get article from post:
-            $article = str_replace(array("\r\n", "\r", "\n"),  "<br />", $_POST["article"]); 
+            $article = str_replace(["\r\n", "\r", "\n"], "<br />", $_POST["article"]);
+            $article = str_replace("'", "\'", $article);
             //save the blog into mysql:
             $con = mysql_connect("localhost", "root", "aishangni520");
             if (!$con) {
                 die("Failed to connect:" . mysql_error());
             } else {
+                $time = date("Y-m-d h:i:s");
                 mysql_select_db("easylog", $con);
-                $query = "insert into blog (title,article)"
-                        . " values ('$title','$article')";
-                mysql_query($query, $con);
-                mysql_close($con);
-                echo "<script>"
-                . "location.href='index.php';"
-                        . "</script>";
+                $query = "insert into blog (title,article,time,author)"
+                        . " values ('$title','$article','$time','$login_name')";
+                if (mysql_query($query, $con)) {
+                    mysql_close($con);
+                    echo "<script>"
+                    . "alert('OK!');location.href='index.php';"
+                    . "</script>";
+                } else {
+                    die(mysql_error($con));
+                }
             }
         }
         ?>

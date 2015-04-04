@@ -22,6 +22,9 @@ readBlog.php{
                 if(reply){
                     reply;
                 }
+                if(delete_comment){
+                    delete_comment;
+                }
 	}
 	if(visiter){//to do
 		if(comment){//done

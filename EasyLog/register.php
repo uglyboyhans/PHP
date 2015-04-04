@@ -25,6 +25,9 @@ and open the template in the editor.
             </label><br />
             <input type="submit" id="register_submit" value="Register" disabled="true" />
         </form>
+        <p>
+            Have account already?<a href="login.php">login now!</a>
+        </p>
         <?php
         //init:
         $flag = true;
@@ -52,12 +55,14 @@ and open the template in the editor.
                 if ($flag) {
                     $query = "insert into user (username,password)"
                             . " values ('$username','$password')";
-                    mysql_query($query, $con);
-                    mysql_close($con);
-                    echo "<script>"
-                    . "location.href='index.php';"
-                    . "</script>";
-                    //exit;
+                    if (mysql_query($query, $con)) {
+                        mysql_close($con);
+                        session_start();
+                        $_SESSION["login"] = $username;
+                        echo "<script>"
+                        . "alert('OK!');location.href='index.php';"
+                        . "</script>";
+                    }
                 }
             }
         }

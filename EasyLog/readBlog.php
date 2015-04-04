@@ -4,6 +4,18 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+session_start();
+$login_name = $_SESSION["login"];
+
+if ($login_name === "" || $login_name === NULL) {
+    echo "<script>"
+    . "location.href='login.php';"
+    . "</script>";
+} else {
+    echo "Welcome: " . $login_name . "! <a href='logout.php'>logout</a><br />";
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,11 +29,12 @@ and open the template in the editor.
             die("Failed to connect:" . mysql_error());
         } else {
             mysql_select_db("easylog", $con);
-            $query = "select title,article from blog where id=" . $q;
+            $query = "select title,article,time,author from blog where id=" . $q;
             $result = mysql_query($query, $con);
             while ($row = mysql_fetch_array($result)) {
                 echo "<h2>" . $row['title'] . "</h2>";
-                //echo $row['author']."<br />";
+                echo "<b>" . $row['author'] . "</b><br />";
+                echo "----------------" . $row['time'] . "<br />";
                 echo $row['article'];
             }
             echo "<p>**********************************************************</p>";
