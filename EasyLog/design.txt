@@ -1,3 +1,9 @@
+toDo{
+    editBlog;
+    deleteBlog;
+}
+
+
 index.php{
 	if admin{
 		func[]={showArticleList,readArticle,createArticle,manageArticle};
@@ -19,28 +25,28 @@ readBlog.php{
 		if(manage){
                     edit or delete;//use option
                 }
-                if(reply){
-                    reply;
+                if(reply){//done
+                    reply;//use js prompt;
                 }
                 if(delete_comment){
-                    delete_comment;
+                    delete_comment;//done
                 }
 	}
-	if(visiter){//to do
+	if(visiter){
 		if(comment){//done
 			
 		}		
 	}
 }
-regiest.php{
+regiest.php{//done
     save to mysql;
     username unique;
 }
-login.php{
+login.php{//done
 	use session;
 }
 
-logout.php{
+logout.php{//done
 	session;
 }
 
@@ -53,13 +59,13 @@ manage.php{
 		delete from mysql;
 		delete comment from mysql;
 	}
-	if(reply){
+	if(reply){//done
 		use like msg board;
 	}
 }
 
 
 mysql.table[]={blog,comment,user};
-blog[]={id,name,title,article};//name sets unique;id is primary key;
-comment[]={id,visitor_name,content,reply,time};
+blog[]={id,title,article,author,time};//name sets unique;id is primary key;
+comment[]={id,visitor_name,content,reply,time,blog_id};
 user[]={username(unique),password};

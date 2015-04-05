@@ -13,7 +13,7 @@ if ($login_name === "" || $login_name === NULL) {
     . "location.href='login.php';"
     . "</script>";
 } else {
-    echo "Welcome: " . $login_name . "! <a href='logout.php'>logout</a><br />";
+    echo "Welcome: " . $login_name . " ! <a href='logout.php'>logout</a><br />";
 }
 ?>
 <html>

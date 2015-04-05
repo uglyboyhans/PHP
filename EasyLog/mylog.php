@@ -19,7 +19,7 @@ if ($login_name === "" || $login_name === NULL) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title id="index_title">HH's Easy Log - index</title>
+        <title id="index_title">HH's Easy Log - mylog</title>
     </head>
     <body>
         <?php
@@ -28,18 +28,22 @@ if ($login_name === "" || $login_name === NULL) {
             die("Could not connect" . mysql_error());
         } else {
             mysql_select_db("easylog", $con);
-            $query = "select id,title,time,author from blog";
+            $query = "select id,title,time from blog where author = '$login_name'";
             $result = mysql_query($query);
             while ($row = mysql_fetch_array($result)) {
-                echo "<p>-------------------------------------</p>";
-                echo "<span onclick='readBlog(" . $row['id'] . ")'>" . $row['title'] . "</span>";
-                echo "--------" . $row['author'] . "--------" . $row['time'];
+                if (empty($row['id'])) {//seem like no use T_T
+                    echo "You have no blog,Why not write now?<br />";
+                } else {
+                    echo "<p>-------------------------------------</p>";
+                    echo "<span onclick='readBlog(" . $row['id'] . ")'>" . $row['title'] . "</span>";
+                    echo "--------" . $login_name . "--------" . $row['time'];
+                }
             }
             mysql_close($con);
         }
         ?>
         <p>-------------------------------------</p>
-        <a href="createArticle.php">Write Blog</a>&nbsp;&nbsp;<a href="mylog.php">My log</a>
+        <a href="createArticle.php">Write Blog</a>&nbsp;&nbsp;<a href="index.php">Index</a>
         <script src="js/toReadBlog.js"></script>
     </body>
 </html>
