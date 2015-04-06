@@ -13,7 +13,7 @@ if ($login_name === "" || $login_name === NULL) {
     . "location.href='login.php';"
     . "</script>";
 } else {
-    echo "Welcome: " . $login_name . " ! <a href='logout.php'>logout</a><br />";
+    echo "Welcome: " . $login_name . " ! <a href='../logout.php'>logout</a><br />";
 }
 ?>
 <html>
@@ -23,7 +23,7 @@ if ($login_name === "" || $login_name === NULL) {
     </head>
     <body>
         <?php
-        $isAdmin=false;
+        $isAdmin = false;
         $q = $_GET["q"];
         $con = mysql_connect("localhost", "root", "aishangni520");
         if (!$con) {
@@ -37,9 +37,13 @@ if ($login_name === "" || $login_name === NULL) {
                 echo "<b>" . $row['author'] . "</b><br />";
                 echo "----------------" . $row['time'] . "<br />";
                 echo $row['article'];
-                if ($login_name === $row['author']) {//if author,can edit blog~
-                    $isAdmin=true;
-                    echo "<p><button>Edit</button></p>";
+                if ($login_name === $row['author']) {//if author,can manage blog~
+                    $isAdmin = true;
+                    echo "<p><select>"
+                    . "<option value='manage'>manage</option>"
+                    . "<option value='edit' onclick='editBlog(".$q.")'>edit</option>"
+                    . "<option value='delete' onclick='deleteBlog(".$q.")'>delete</option>"
+                    . "</select></p>";
                 }
             }
             echo "<p>**********************************************************</p>";
@@ -55,16 +59,16 @@ if ($login_name === "" || $login_name === NULL) {
                         echo "admin reply:" . $row_comment['reply'] . "<br />";
                     }
                     if ($isAdmin) {//if author,can manage comment~
-                        echo "<button onclick='reply(".$row_comment['id'].")'>reply</button>";
+                        echo "<button onclick='reply(" . $row_comment['id'] . ")'>reply</button>";
                         echo "<button onclick='deleteComment(" . $row_comment['id'] . ")'>delete</button>";
-                        echo "<div id='".$row_comment['id']."' style='display:none'>"
-                                . "<form action='reply.php' method='post'>"
-                                . "<input type='hidden' name='id' value=".$row_comment['id']." />"
-                                . "<textarea cols='22' rows='3' name='reply'></textarea>"
-                                . "<input type='submit' value='reply' />"
-                                . "</form>"
-                                . "test~~~"
-                                . "</div>";
+                        echo "<div id='" . $row_comment['id'] . "' style='display:none'>"
+                        . "<form action='manage/reply.php' method='post'>"
+                        . "<input type='hidden' name='id' value=" . $row_comment['id'] . " />"
+                        . "<textarea cols='22' rows='3' name='reply'></textarea>"
+                        . "<input type='submit' value='reply' />"
+                        . "</form>"
+                        . "test~~~"
+                        . "</div>";
                     }
                     echo "<p>------------------------------</p>";
                 }
@@ -73,7 +77,7 @@ if ($login_name === "" || $login_name === NULL) {
         }
         ?>
         <p>----------------------------------------------------</p>
-        <form action="comment.php?q=<?php echo $q; ?>" id="form_comment" method="post">
+        <form action="manage/comment.php?q=<?php echo $q; ?>" id="form_comment" method="post">
             <textarea cols="55" rows="11" name="content"></textarea>
             <input type="submit" id="submit_comment" value="Comment" />
         </form>

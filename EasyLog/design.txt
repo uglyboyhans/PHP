@@ -1,8 +1,3 @@
-toDo{
-    editBlog;
-    deleteBlog;
-}
-
 
 index.php{
 	if admin{
@@ -22,7 +17,7 @@ readBlog.php{
 	get comment from mysql;//done
         get reply from mysql;//done
 	if(admin){
-		if(manage){
+		if(manage){//done
                     edit or delete;//use option
                 }
                 if(reply){//done
@@ -51,11 +46,11 @@ logout.php{//done
 }
 
 manage.php{
-	if(edit){
+	if(edit){//done
 		title and article=now's;
 		update mysql;
 	}
-	if(delete){
+	if(delete){//done
 		delete from mysql;
 		delete comment from mysql;
 	}

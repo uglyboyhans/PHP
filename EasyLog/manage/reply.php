@@ -5,7 +5,7 @@ $login_name = $_SESSION["login"];
 
 if ($login_name === "" || $login_name === NULL) {
     echo "<script>"
-    . "location.href='login.php';"
+    . "location.href='../login.php';"
     . "</script>";
 }
 //init:

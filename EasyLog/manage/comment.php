@@ -5,7 +5,7 @@ $login_name = $_SESSION["login"];
 
 if ($login_name === "" || $login_name === NULL) {
     echo "<script>"
-    . "location.href='login.php';"
+    . "location.href='../login.php';"
     . "</script>";
 }
 //init:
@@ -28,7 +28,7 @@ if ($content != "" && $blog_id != "") {
         if (mysql_query($query, $con)) {
             mysql_close($con);
             echo "<script>"
-            . "alert('OK!');location.href='readBlog.php?q=$blog_id';"
+            . "alert('OK!');history.back();"
             . "</script>";
         }
     }

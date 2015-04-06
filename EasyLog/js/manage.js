@@ -4,6 +4,42 @@
  * and open the template in the editor.
  */
 /* global xmlHttp */
+//edit blog:
+function editBlog(blog_id) {
+    var xmlHttp;
+    xmlHttp = GetXmlHttpObject();
+    if (xmlHttp === null)
+    {
+        alert("Browser does not support HTTP Request");
+        return;
+    }
+    var url = "manage/editBlog.php";
+    url = url + "?q=" + blog_id;
+    url = url + "&sid=" + Math.random();
+    xmlHttp.onreadystatechange = stateChanged;
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send(null);
+    location.href = url;
+}
+//delete blog:
+function deleteBlog(del_id) {
+    if (confirm("Sure to delete this article?") === true) {
+        var xmlHttp;
+        xmlHttp = GetXmlHttpObject();
+        if (xmlHttp === null)
+        {
+            alert("Browser does not support HTTP Request");
+            return;
+        }
+        var url = "manage/deleteBlog.php";
+        url = url + "?q=" + del_id;
+        url = url + "&sid=" + Math.random();
+        xmlHttp.onreadystatechange = stateChanged;
+        xmlHttp.open("GET", url, true);
+        xmlHttp.send(null);
+        location.href = url;
+    }
+}
 
 //delete comment:
 function deleteComment(del_id) {
@@ -15,18 +51,18 @@ function deleteComment(del_id) {
             alert("Browser does not support HTTP Request");
             return;
         }
-        var url = "deleteComment.php";
+        var url = "manage/deleteComment.php";
         url = url + "?q=" + del_id;
         url = url + "&sid=" + Math.random();
         xmlHttp.onreadystatechange = stateChanged;
         xmlHttp.open("GET", url, true);
         xmlHttp.send(null);
-        location.href=url;
+        location.href = url;
     }
 }
 
 function reply(reply_id) {// show the form to reply a comment;
-    document.getElementById(reply_id).style.display="block";
+    document.getElementById(reply_id).style.display = "block";
 }
 
 
